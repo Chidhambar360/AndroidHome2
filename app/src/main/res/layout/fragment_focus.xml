@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingBottom="24dp">
+
+        <!-- Timer partition (equal left/right lines with centered title) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#AAAAAA"/>
+
+            <TextView
+                android:id="@+id/timerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#AAAAAA"
+                android:textSize="14sp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#AAAAAA"/>
+        </LinearLayout>
+
+        <!-- ================= TIMER ROW ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingHorizontal="24dp"
+            android:layout_marginBottom="12dp">
+
+            <!-- TIME (clickable) -->
+            <TextView
+                android:id="@+id/timeText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="25:00"
+                android:textSize="36sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <!-- STATS (Today + Total stacked) -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/todayText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Today: 0 min"
+                    android:textSize="14sp"
+                    android:textColor="#AAAAAA"/>
+
+                <TextView
+                    android:id="@+id/totalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total: 0 hr 0 min"
+                    android:textSize="13sp"
+                    android:textColor="#777777"
+                    android:layout_marginTop="2dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Schedule partition (equal lines) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="24dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="8dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#AAAAAA"/>
+
+            <TextView
+                android:id="@+id/scheduleTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#AAAAAA"
+                android:textSize="14sp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#AAAAAA"/>
+        </LinearLayout>
+
+        <!-- Schedule content -->
+        <TextView
+            android:id="@+id/scheduleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="24dp"
+            android:textColor="#AAAAAA"
+            android:textSize="14sp"
+            android:lineSpacingExtra="6dp"
+            android:layout_marginBottom="12dp"
+            android:text=""/>
+
+        <!-- Deadlines partition (equal lines) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="24dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="8dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#AAAAAA"/>
+
+            <TextView
+                android:id="@+id/deadlinesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#AAAAAA"
+                android:textSize="14sp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#AAAAAA"/>
+        </LinearLayout>
+
+        <!-- Deadlines content -->
+        <TextView
+            android:id="@+id/deadlinesText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="24dp"
+            android:textColor="#AAAAAA"
+            android:textSize="14sp"
+            android:lineSpacingExtra="10dp"
+            android:layout_marginTop="4dp"
+            android:text=""/>
+
+        <!-- TODO partition (equal lines) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#AAAAAA"/>
+
+            <TextView
+                android:id="@+id/todoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#AAAAAA"
+                android:textSize="14sp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#AAAAAA"/>
+        </LinearLayout>
+
+        <!-- TODO list container -->
+        <LinearLayout
+            android:id="@+id/todoContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="8dp"
+            android:layout_marginBottom="12dp"/>
+
+    </LinearLayout>
+</ScrollView>
