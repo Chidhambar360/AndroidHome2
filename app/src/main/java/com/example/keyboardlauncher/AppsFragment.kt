@@ -5,10 +5,11 @@ import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowInsets
 import androidx.fragment.app.Fragment
 import com.example.keyboardlauncher.databinding.FragmentAppsBinding
 import kotlin.math.ceil
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 
 class AppsFragment : Fragment() {
 
@@ -32,25 +33,28 @@ class AppsFragment : Fragment() {
         val apps = loadApps()
         val n = apps.size
 
-        binding.rootView.setOnApplyWindowInsetsListener { _, insets ->
-
-            if (layoutDone) return@setOnApplyWindowInsetsListener insets
+        // Ensure setup runs once the view is attached. Using post() is reliable across devices.
+        binding.rootView.post {
+            if (layoutDone) return@post
             layoutDone = true
 
-            val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
+            // Safe cross-API way to get system bar insets
+            val rootInsets = ViewCompat.getRootWindowInsets(binding.rootView)
+            val systemBars = rootInsets?.getInsets(WindowInsetsCompat.Type.systemBars())
+            val topInset = systemBars?.top ?: 0
+            val bottomInset = systemBars?.bottom ?: 0
 
             val metrics = DisplayMetrics()
             requireActivity().windowManager.defaultDisplay.getMetrics(metrics)
 
             val usableWidth = metrics.widthPixels
-            val usableHeight =
-                metrics.heightPixels - systemBars.top - systemBars.bottom
+            val usableHeight = metrics.heightPixels - topInset - bottomInset
 
             // -------- OPTIMAL GRID SEARCH --------
             var bestCellSize = 0
             var bestColumns = 1
 
-            for (columns in 1..n) {
+            for (columns in 1..maxOf(1, n)) {
                 val rows = ceil(n.toDouble() / columns).toInt()
                 val cellWidth = usableWidth / columns
                 val cellHeight = usableHeight / rows
@@ -69,8 +73,6 @@ class AppsFragment : Fragment() {
                 AppAdapter(apps, bestCellSize) {
                     startActivity(it.launchIntent)
                 }
-
-            insets
         }
     }
 
